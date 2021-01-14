@@ -1,0 +1,26 @@
+{
+  "name": "kawaiibattleroyaleswitchbullet_dapp",
+  "version": "1.0.0",
+  "description": "Kawaii Battle Royale is no-loss team-based first-person shooter tournament game",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OpenDive/KawaiiBattleRoyaleSwitchBullet_Dapp.git"
+  },
+  "keywords": [
+    "Gaming",
+    "DeFi",
+    "Blockchain",
+    "Smart",
+    "Contracts"
+  ],
+  "author": "kPatch",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/OpenDive/KawaiiBattleRoyaleSwitchBullet_Dapp/issues"
+  },
+  "homepage": "https://github.com/OpenDive/KawaiiBattleRoyaleSwitchBullet_Dapp#readme"
+}
