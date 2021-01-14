@@ -11,13 +11,19 @@ const HDWalletProvider  = require('@truffle/hdwallet-provider');
 const erc20ABI                = require('../build/contracts/ERC20.json');
 const poolABI                 = require('../build/contracts/LendingPool.json');
 const poolAddressProviderABI  = require('../build/contracts/LendingPoolAddressProvider.json');
+const dataProviderABI         = require('../build/contracts/ProtocolDataProvider.json')
+const { load } = require('npm');
 
 const provider = new HDWalletProvider( eth_oracleKeys, `https://kovan.infura.io/v3/${infuraId}`,0, 1 );
 
 async function main() {
   const web3 = new Web3(provider);
 
-  const loader = setupLoader({ provider: web3 }).web3;
+  const loader = setupLoader({ 
+    provider: web3,
+    defaultGas:  1e6, 
+    defaultGasPrice: 1e9 
+  }).web3;
   // const loader = setupLoader({ provider: web3 }).truffle;
 
   // Set up a web3 contract, representing a deployed ERC20, using the contract loader
@@ -26,19 +32,23 @@ async function main() {
   const token = loader.fromABI(erc20ABI, null, address);
 
 
-  const lpAddressProviderAddress = "0x88757f2f99175387aB4C6a4b3067c77A695b0349";
-  const addressProvider = loader.fromABI(poolAddressProviderABI, null, lpAddressProviderAddress);
-  const lpCoreAddress  = await addressProvider.methods.getLendingPool().call();
-  console.log(`ADDRESS: ${lpCoreAddress}`);
+  // const lpAddressProviderAddress = "0x88757f2f99175387aB4C6a4b3067c77A695b0349";
+  // const addressProvider = loader.fromABI(poolAddressProviderABI, null, lpAddressProviderAddress);
+  // const lpCoreAddress  = await addressProvider.methods.getLendingPool().call();
+  // console.log(`ADDRESS: ${lpCoreAddress}`);
 
-  // Get latest lending pool address
-  // const lendingPoolAddress = "0x9FE532197ad76c5a68961439604C037EB796"; 
-  const lendingPool = loader.fromABI(poolABI, null, lpCoreAddress);
-  const isPaused = await lendingPool.methods.paused().call();
-  console.log(`PAUSED:  ${isPaused}`);
+  // // Get latest lending pool address
+  // const lendingPool = loader.fromABI(poolABI, null, lpCoreAddress);
+  // const isPaused = await lendingPool.methods.paused().call();
+  // console.log(`PAUSED:  ${isPaused}`);
 
-  const reservesList = await lendingPool.methods.getReservesList().call();
-  console.log(`RESERVES:  ${reservesList}`);
+  // const reservesList = await lendingPool.methods.getReservesList().call();
+  // console.log(`RESERVES:  ${reservesList}`);
+
+  const dataProviderAddress = "0x3c73A5E5785cAC854D468F727c606C07488a29D6";
+  const dataProvider = loader.fromABI(dataProviderABI, null, dataProviderAddress);
+  const allTokens = await dataProvider.methods.getAllATokens().call();
+  console.log(`ALL TOKES: ${allTokens}`);
 
   // Retrieve accounts
   const accounts = await web3.eth.getAccounts();
