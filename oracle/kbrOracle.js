@@ -8,9 +8,9 @@ const infuraId        = secrets.infuraId;
 const { setupLoader }   = require('@openzeppelin/contract-loader');
 const HDWalletProvider  = require('@truffle/hdwallet-provider');
 
-const erc20ABI                = require('./build/contracts/ERC20.json');
-const poolABI                 = require('./build/contracts/LendingPool.json');
-const poolAddressProviderABI  = require('./build/contracts/LendingPoolAddressProvider.json');
+const erc20ABI                = require('../build/contracts/ERC20.json');
+const poolABI                 = require('../build/contracts/LendingPool.json');
+const poolAddressProviderABI  = require('../build/contracts/LendingPoolAddressProvider.json');
 
 const provider = new HDWalletProvider( eth_oracleKeys, `https://kovan.infura.io/v3/${infuraId}`,0, 1 );
 
