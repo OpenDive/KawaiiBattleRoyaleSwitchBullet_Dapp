@@ -1,24 +1,18 @@
-const fs    = require('fs');
-const path  = require('path');
-const Web3  = require('web3');
+const fs              = require('fs');
+const path            = require('path');
+const Web3            = require('web3');
+const secrets         = JSON.parse( fs.readFileSync('.secrets.json').toString().trim() );
+const eth_oracleKeys  = secrets.eth_oracleKeys;
+const infuraId        = secrets.infuraId;
 
 const { setupLoader }   = require('@openzeppelin/contract-loader');
 const HDWalletProvider  = require('@truffle/hdwallet-provider');
 
-const secrets = JSON.parse( fs.readFileSync('.secrets.json').toString().trim() );
+const erc20ABI                = require('./build/contracts/ERC20.json');
+const poolABI                 = require('./build/contracts/LendingPool.json');
+const poolAddressProviderABI  = require('./build/contracts/LendingPoolAddressProvider.json');
 
-const erc20ABI = require('./build/contracts/ERC20.json');
-const poolABI = require('./build/contracts/LendingPool.json');
-const poolAddressProviderABI = require('./build/contracts/LendingPoolAddressProvider.json');
-
-const eth_oracleKeys  = secrets.eth_oracleKeys;
-const infuraId        = secrets.infuraId;
-
-const provider = new HDWalletProvider(
-    eth_oracleKeys, 
-    `https://kovan.infura.io/v3/${infuraId}`,
-    0,
-    1);
+const provider = new HDWalletProvider( eth_oracleKeys, `https://kovan.infura.io/v3/${infuraId}`,0, 1 );
 
 async function main() {
   const web3 = new Web3(provider);
