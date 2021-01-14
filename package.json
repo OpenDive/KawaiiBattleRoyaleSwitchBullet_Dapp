@@ -22,5 +22,12 @@
   "bugs": {
     "url": "https://github.com/OpenDive/KawaiiBattleRoyaleSwitchBullet_Dapp/issues"
   },
-  "homepage": "https://github.com/OpenDive/KawaiiBattleRoyaleSwitchBullet_Dapp#readme"
+  "homepage": "https://github.com/OpenDive/KawaiiBattleRoyaleSwitchBullet_Dapp#readme",
+  "dependencies": {
+    "@openzeppelin/contract-loader": "^0.6.2",
+    "@openzeppelin/contracts": "^3.3.0",
+    "@openzeppelin/test-helpers": "^0.5.10",
+    "@truffle/hdwallet-provider": "^1.2.1",
+    "web3": "^1.3.1"
+  }
 }
