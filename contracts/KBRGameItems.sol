@@ -7,7 +7,7 @@ import "@openzeppelin/contracts/presets/ERC1155PresetMinterPauser.sol";
 
 //https://soliditydeveloper.com/erc-1155
 
-contract KBRGameItems is ERC1155 {
+contract KBRGameItems is ERC1155PresetMinterPauser {
     using SafeMath for uint256;
     using Counters for Counters.Counter;
     Counters.Counter private itemId;
@@ -24,27 +24,27 @@ contract KBRGameItems is ERC1155 {
     uint256 public constant SHIELD          = 6;
     uint256 public constant LOVE_GUN        = 7;
 
-    constructor(address _governance) public ERC1155("https://game.example/api/item/{id}.json") {
+    constructor(address _governance) public ERC1155PresetMinterPauser("https://game.example/api/item/{id}.json") {
         governance = _governance;
 
         // KAWAII Tokens. 3 BILLION Marketcap
-        _mint(address(this), KAWAII_CAPPED,    3 * (10**9), "KAWAII");
+        // _mint(address(this), KAWAII_CAPPED,    3 * (10**9), "KAWAII");
 
         // Initial NFT Items
-        _mint(address(this), SUPER_BOOTS,      10**18,      "");
-        _mint(address(this), TIMEWARP_CAPE,    1,           "");
-        _mint(address(this), JETPACK,          10**27,      "");
-        _mint(address(this), THORS_HAMMER,     1,           "");
-        _mint(address(this), SWORD,            10**9,       "");
-        _mint(address(this), SHIELD,           10**9,       "");
-        _mint(address(this), LOVE_GUN,         10**10,      "");
+        // _mint(address(this), SUPER_BOOTS,      10**18,      "");
+        // _mint(address(this), TIMEWARP_CAPE,    1,           "");
+        // _mint(address(this), JETPACK,          10**27,      "");
+        // _mint(address(this), THORS_HAMMER,     1,           "");
+        // _mint(address(this), SWORD,            10**9,       "");
+        // _mint(address(this), SHIELD,           10**9,       "");
+        // _mint(address(this), LOVE_GUN,         10**10,      "");
         
-        itemId.increment();
-        itemId.increment();
-        itemId.increment();
-        itemId.increment();
-        itemId.increment();
-        itemId.increment();
+        // itemId.increment();
+        // itemId.increment();
+        // itemId.increment();
+        // itemId.increment();
+        // itemId.increment();
+        // itemId.increment();
     }
 
     function createItem(uint256 initialSupply) external onlyGovernance {
@@ -53,7 +53,7 @@ contract KBRGameItems is ERC1155 {
         _mint(address(this), newItemId, initialSupply, "");
     }
 
-    function mintBatch(
+    function mintBatchItems(
         address to, 
         uint256[] memory ids, 
         uint256[] memory amounts, 
