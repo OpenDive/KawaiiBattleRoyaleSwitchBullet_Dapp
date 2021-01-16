@@ -156,22 +156,22 @@ class Store {
     })
   }
 
-  // getERC20Balance = async (hmy, token, account, callback) => {
-  //   if (account && account.address) {
-  //     let erc20Contract = hmy.client.contracts.createContract(require('../abi/ERC20.json'), token.address)
+  getERC20Balance = async (hmy, token, account, callback) => {
+    if (account && account.address) {
+      let erc20Contract = hmy.client.contracts.createContract(require('../abi/ERC20.json'), token.address)
 
-  //     try {
-  //       var balance = await erc20Contract.methods.balanceOf(account.address).call(hmy.gasOptions())
-  //       balance = parseFloat(balance)/10**token.decimals
-  //       callback(null, Math.ceil(balance))
-  //     } catch(err) {
-  //       console.log(err)
-  //       return callback(err)
-  //     }
-  //   } else {
-  //     callback(null)
-  //   }
-  // }
+      try {
+        var balance = await erc20Contract.methods.balanceOf(account.address).call(hmy.gasOptions())
+        balance = parseFloat(balance)/10**token.decimals
+        callback(null, Math.ceil(balance))
+      } catch(err) {
+        console.log(err)
+        return callback(err)
+      }
+    } else {
+      callback(null)
+    }
+  }
 
 //   useFaucet = async () => {
 //     const hmy = store.getStore('hmy')
