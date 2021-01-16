@@ -8,10 +8,10 @@ import "@openzeppelin/contracts/presets/ERC20PresetMinterPauser.sol";
 // Hold KAWAII Tokens
 // In charge of managing game
 contract KBRGame is Ownable {
-    address oracle;
-    IERC20 busd;
-    IERC20 link;
-    ERC20PresetMinterPauser kawaii;
+    address     public oracle;
+    IERC20      public busd;
+    IERC20      public link;
+    ERC20PresetMinterPauser public kawaii;
 
     uint public defaultStake;
     uint public minStakeDays;
