@@ -44,20 +44,26 @@ contract KBRGame {
     /// Stake to get acess to the game
     /// @param x the new value to store
     /// @dev the minimum required is updated based on the phase of the game relase
-    /// @dev 
-    function stakeToPlay() payable {
+    function stakeToPlayBUSD() payable {
         uint256 allowance = busd.allowance(msg.sender, oracle);
         require(allowance >= defaultStake, "Check the token allowance");
         busd.transferFrom(_msgSender(), oracle, defaultStake);
 
-        Player player = Player({
-            timeJoined:     now,
-            amountStaked:   allowance
-        });
+        Player player = Player({ timeJoined: now, amountStaked: allowance });
         players[msg.sender] = player;
-
         kawaii.mint(2000 * 10**18); // Mint KAWAII tokens for staking
+        emit NewUserStakedAccess(msg.sender);
+    }
 
+    /// Need to check equivalent amount of linke to defaultStake
+    function stakeToPlayLINK() payable {
+        uint256 allowance = link.allowance(msg.sender, oracle);
+        require(allowance >= defaultStake, "Check the token allowance");
+        link.transferFrom(_msgSender(), oracle, defaultStake);
+
+        Player player = Player({ timeJoined: now, amountStaked: allowance });
+        players[msg.sender] = player;
+        kawaii.mint(2000 * 10**18); // Mint KAWAII tokens for staking
         emit NewUserStakedAccess(msg.sender);
     }
 
