@@ -1,0 +1,737 @@
+{
+  "contractName": "KBRTournament",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "newTournamentContracts",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "tournamentState",
+      "outputs": [
+        {
+          "internalType": "enum KBRTournament.TOURNAMENT_STATE",
+          "name": "",
+          "type": "uint8"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.6.2+commit.bacdbe57\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"newTournamentContracts\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"tournamentState\",\"outputs\":[{\"internalType\":\"enum KBRTournament.TOURNAMENT_STATE\",\"name\":\"\",\"type\":\"uint8\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/C/startup/open-dive/KawaiiBattleRoyaleSwitchBullet_Dapp/contracts/KBRTournament.sol\":\"KBRTournament\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/C/startup/open-dive/KawaiiBattleRoyaleSwitchBullet_Dapp/contracts/KBRTournament.sol\":{\"keccak256\":\"0x1cc3f132259009db10eacfb32bc042b2215b4f8dd6eab7e3ce7fb06832e6a495\",\"urls\":[\"bzz-raw://c7d56716549131d345fe6ee4ed3ed1e0a1428c5fda1d814351354f50054cdb10\",\"dweb:/ipfs/QmaQgubwpJsG7LXW6ypMNaoZsU7NCjiSTTBm4nxUFrEmit\"]},\"@openzeppelin/contracts/GSN/Context.sol\":{\"keccak256\":\"0x8d3cb350f04ff49cfb10aef08d87f19dcbaecc8027b0bed12f3275cd12f38cf0\",\"urls\":[\"bzz-raw://ded47ec7c96750f9bd04bbbc84f659992d4ba901cb7b532a52cd468272cf378f\",\"dweb:/ipfs/QmfBrGtQP7rZEqEg6Wz6jh2N2Kukpj1z5v3CGWmAqrzm96\"]},\"@openzeppelin/contracts/access/Ownable.sol\":{\"keccak256\":\"0xf7c39c7e6d06ed3bda90cfefbcbf2ddc32c599c3d6721746546ad64946efccaa\",\"urls\":[\"bzz-raw://cb57a28e189cd8b05748db44bdd51d608e6f1364dd1b35ad921e1bc82c10631e\",\"dweb:/ipfs/QmaWWTBbVu2pRR9XUbE4iC159NoP59cRF9ZJwhf4ghFN9i\"]}},\"version\":1}",
+  "bytecode": "0x608060405234801561001057600080fd5b5061015a806100206000396000f3fe608060405234801561001057600080fd5b50600436106100365760003560e01c80631fc6f61e1461003b578063eb917c5414610067575b600080fd5b6100436100d5565b6040518082600481111561005357fe5b60ff16815260200191505060405180910390f35b6100936004803603602081101561007d57600080fd5b81019080803590602001909291905050506100e8565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b600160009054906101000a900460ff1681565b600081815481106100f557fe5b906000526020600020016000915054906101000a900473ffffffffffffffffffffffffffffffffffffffff168156fea26469706673582212206f2ad3d5d075a8b463332abb0453d27692e0d125efe75a757e9063d8c6fc916f64736f6c63430006020033",
+  "deployedBytecode": "0x608060405234801561001057600080fd5b50600436106100365760003560e01c80631fc6f61e1461003b578063eb917c5414610067575b600080fd5b6100436100d5565b6040518082600481111561005357fe5b60ff16815260200191505060405180910390f35b6100936004803603602081101561007d57600080fd5b81019080803590602001909291905050506100e8565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b600160009054906101000a900460ff1681565b600081815481106100f557fe5b906000526020600020016000915054906101000a900473ffffffffffffffffffffffffffffffffffffffff168156fea26469706673582212206f2ad3d5d075a8b463332abb0453d27692e0d125efe75a757e9063d8c6fc916f64736f6c63430006020033",
+  "sourceMap": "134:474:5:-:0;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;134:474:5;;;;;;;",
+  "deployedSourceMap": "134:474:5:-:0;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;134:474:5;;;;;;;;;;;;;;;;;;;;;;;;359:39;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;164:40;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;164:40:5;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;359:39;;;;;;;;;;;;;:::o;164:40::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::o",
+  "source": "pragma solidity ^0.6.0;\r\n\r\nimport \"@openzeppelin/contracts/GSN/Context.sol\";\r\nimport \"@openzeppelin/contracts/access/Ownable.sol\";\r\n\r\ncontract KBRTournament {\r\n    address [] public newTournamentContracts;\r\n    enum TOURNAMENT_STATE { \r\n        CREATED, \r\n        OPEN, \r\n        CLOSED, \r\n        LEGENDARY_AIRDROP, \r\n        CALCULATING_WINNER \r\n    }\r\n    TOURNAMENT_STATE public tournamentState;\r\n    \r\n    mapping(uint256 => TournamentResult) TournamentResults;\r\n    uint256 tournamentId;\r\n\r\n    struct TournamentResult { \r\n        address winner;\r\n        uint nftID;\r\n        uint timeEnded;\r\n    }\r\n}",
+  "sourcePath": "C:/startup/open-dive/KawaiiBattleRoyaleSwitchBullet_Dapp/contracts/KBRTournament.sol",
+  "ast": {
+    "absolutePath": "/C/startup/open-dive/KawaiiBattleRoyaleSwitchBullet_Dapp/contracts/KBRTournament.sol",
+    "exportedSymbols": {
+      "KBRTournament": [
+        853
+      ]
+    },
+    "id": 854,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 826,
+        "literals": [
+          "solidity",
+          "^",
+          "0.6",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:5"
+      },
+      {
+        "absolutePath": "@openzeppelin/contracts/GSN/Context.sol",
+        "file": "@openzeppelin/contracts/GSN/Context.sol",
+        "id": 827,
+        "nodeType": "ImportDirective",
+        "scope": 854,
+        "sourceUnit": 910,
+        "src": "27:49:5",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "@openzeppelin/contracts/access/Ownable.sol",
+        "file": "@openzeppelin/contracts/access/Ownable.sol",
+        "id": 828,
+        "nodeType": "ImportDirective",
+        "scope": 854,
+        "sourceUnit": 1283,
+        "src": "78:52:5",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 853,
+        "linearizedBaseContracts": [
+          853
+        ],
+        "name": "KBRTournament",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "constant": false,
+            "functionSelector": "eb917c54",
+            "id": 831,
+            "name": "newTournamentContracts",
+            "nodeType": "VariableDeclaration",
+            "overrides": null,
+            "scope": 853,
+            "src": "164:40:5",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_array$_t_address_$dyn_storage",
+              "typeString": "address[]"
+            },
+            "typeName": {
+              "baseType": {
+                "id": 829,
+                "name": "address",
+                "nodeType": "ElementaryTypeName",
+                "src": "164:7:5",
+                "stateMutability": "nonpayable",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                }
+              },
+              "id": 830,
+              "length": null,
+              "nodeType": "ArrayTypeName",
+              "src": "164:10:5",
+              "typeDescriptions": {
+                "typeIdentifier": "t_array$_t_address_$dyn_storage_ptr",
+                "typeString": "address[]"
+              }
+            },
+            "value": null,
+            "visibility": "public"
+          },
+          {
+            "canonicalName": "KBRTournament.TOURNAMENT_STATE",
+            "id": 837,
+            "members": [
+              {
+                "id": 832,
+                "name": "CREATED",
+                "nodeType": "EnumValue",
+                "src": "245:7:5"
+              },
+              {
+                "id": 833,
+                "name": "OPEN",
+                "nodeType": "EnumValue",
+                "src": "264:4:5"
+              },
+              {
+                "id": 834,
+                "name": "CLOSED",
+                "nodeType": "EnumValue",
+                "src": "280:6:5"
+              },
+              {
+                "id": 835,
+                "name": "LEGENDARY_AIRDROP",
+                "nodeType": "EnumValue",
+                "src": "298:17:5"
+              },
+              {
+                "id": 836,
+                "name": "CALCULATING_WINNER",
+                "nodeType": "EnumValue",
+                "src": "327:18:5"
+              }
+            ],
+            "name": "TOURNAMENT_STATE",
+            "nodeType": "EnumDefinition",
+            "src": "211:142:5"
+          },
+          {
+            "constant": false,
+            "functionSelector": "1fc6f61e",
+            "id": 839,
+            "name": "tournamentState",
+            "nodeType": "VariableDeclaration",
+            "overrides": null,
+            "scope": 853,
+            "src": "359:39:5",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_enum$_TOURNAMENT_STATE_$837",
+              "typeString": "enum KBRTournament.TOURNAMENT_STATE"
+            },
+            "typeName": {
+              "contractScope": null,
+              "id": 838,
+              "name": "TOURNAMENT_STATE",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 837,
+              "src": "359:16:5",
+              "typeDescriptions": {
+                "typeIdentifier": "t_enum$_TOURNAMENT_STATE_$837",
+                "typeString": "enum KBRTournament.TOURNAMENT_STATE"
+              }
+            },
+            "value": null,
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "id": 843,
+            "name": "TournamentResults",
+            "nodeType": "VariableDeclaration",
+            "overrides": null,
+            "scope": 853,
+            "src": "411:54:5",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_TournamentResult_$852_storage_$",
+              "typeString": "mapping(uint256 => struct KBRTournament.TournamentResult)"
+            },
+            "typeName": {
+              "id": 842,
+              "keyType": {
+                "id": 840,
+                "name": "uint256",
+                "nodeType": "ElementaryTypeName",
+                "src": "419:7:5",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                }
+              },
+              "nodeType": "Mapping",
+              "src": "411:36:5",
+              "typeDescriptions": {
+                "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_TournamentResult_$852_storage_$",
+                "typeString": "mapping(uint256 => struct KBRTournament.TournamentResult)"
+              },
+              "valueType": {
+                "contractScope": null,
+                "id": 841,
+                "name": "TournamentResult",
+                "nodeType": "UserDefinedTypeName",
+                "referencedDeclaration": 852,
+                "src": "430:16:5",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_struct$_TournamentResult_$852_storage_ptr",
+                  "typeString": "struct KBRTournament.TournamentResult"
+                }
+              }
+            },
+            "value": null,
+            "visibility": "internal"
+          },
+          {
+            "constant": false,
+            "id": 845,
+            "name": "tournamentId",
+            "nodeType": "VariableDeclaration",
+            "overrides": null,
+            "scope": 853,
+            "src": "472:20:5",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_uint256",
+              "typeString": "uint256"
+            },
+            "typeName": {
+              "id": 844,
+              "name": "uint256",
+              "nodeType": "ElementaryTypeName",
+              "src": "472:7:5",
+              "typeDescriptions": {
+                "typeIdentifier": "t_uint256",
+                "typeString": "uint256"
+              }
+            },
+            "value": null,
+            "visibility": "internal"
+          },
+          {
+            "canonicalName": "KBRTournament.TournamentResult",
+            "id": 852,
+            "members": [
+              {
+                "constant": false,
+                "id": 847,
+                "name": "winner",
+                "nodeType": "VariableDeclaration",
+                "overrides": null,
+                "scope": 852,
+                "src": "537:14:5",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                },
+                "typeName": {
+                  "id": 846,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "537:7:5",
+                  "stateMutability": "nonpayable",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 849,
+                "name": "nftID",
+                "nodeType": "VariableDeclaration",
+                "overrides": null,
+                "scope": 852,
+                "src": "562:10:5",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 848,
+                  "name": "uint",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "562:4:5",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 851,
+                "name": "timeEnded",
+                "nodeType": "VariableDeclaration",
+                "overrides": null,
+                "scope": 852,
+                "src": "583:14:5",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 850,
+                  "name": "uint",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "583:4:5",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              }
+            ],
+            "name": "TournamentResult",
+            "nodeType": "StructDefinition",
+            "scope": 853,
+            "src": "501:104:5",
+            "visibility": "public"
+          }
+        ],
+        "scope": 854,
+        "src": "134:474:5"
+      }
+    ],
+    "src": "0:608:5"
+  },
+  "legacyAST": {
+    "absolutePath": "/C/startup/open-dive/KawaiiBattleRoyaleSwitchBullet_Dapp/contracts/KBRTournament.sol",
+    "exportedSymbols": {
+      "KBRTournament": [
+        853
+      ]
+    },
+    "id": 854,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 826,
+        "literals": [
+          "solidity",
+          "^",
+          "0.6",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:5"
+      },
+      {
+        "absolutePath": "@openzeppelin/contracts/GSN/Context.sol",
+        "file": "@openzeppelin/contracts/GSN/Context.sol",
+        "id": 827,
+        "nodeType": "ImportDirective",
+        "scope": 854,
+        "sourceUnit": 910,
+        "src": "27:49:5",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "@openzeppelin/contracts/access/Ownable.sol",
+        "file": "@openzeppelin/contracts/access/Ownable.sol",
+        "id": 828,
+        "nodeType": "ImportDirective",
+        "scope": 854,
+        "sourceUnit": 1283,
+        "src": "78:52:5",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 853,
+        "linearizedBaseContracts": [
+          853
+        ],
+        "name": "KBRTournament",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "constant": false,
+            "functionSelector": "eb917c54",
+            "id": 831,
+            "name": "newTournamentContracts",
+            "nodeType": "VariableDeclaration",
+            "overrides": null,
+            "scope": 853,
+            "src": "164:40:5",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_array$_t_address_$dyn_storage",
+              "typeString": "address[]"
+            },
+            "typeName": {
+              "baseType": {
+                "id": 829,
+                "name": "address",
+                "nodeType": "ElementaryTypeName",
+                "src": "164:7:5",
+                "stateMutability": "nonpayable",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                }
+              },
+              "id": 830,
+              "length": null,
+              "nodeType": "ArrayTypeName",
+              "src": "164:10:5",
+              "typeDescriptions": {
+                "typeIdentifier": "t_array$_t_address_$dyn_storage_ptr",
+                "typeString": "address[]"
+              }
+            },
+            "value": null,
+            "visibility": "public"
+          },
+          {
+            "canonicalName": "KBRTournament.TOURNAMENT_STATE",
+            "id": 837,
+            "members": [
+              {
+                "id": 832,
+                "name": "CREATED",
+                "nodeType": "EnumValue",
+                "src": "245:7:5"
+              },
+              {
+                "id": 833,
+                "name": "OPEN",
+                "nodeType": "EnumValue",
+                "src": "264:4:5"
+              },
+              {
+                "id": 834,
+                "name": "CLOSED",
+                "nodeType": "EnumValue",
+                "src": "280:6:5"
+              },
+              {
+                "id": 835,
+                "name": "LEGENDARY_AIRDROP",
+                "nodeType": "EnumValue",
+                "src": "298:17:5"
+              },
+              {
+                "id": 836,
+                "name": "CALCULATING_WINNER",
+                "nodeType": "EnumValue",
+                "src": "327:18:5"
+              }
+            ],
+            "name": "TOURNAMENT_STATE",
+            "nodeType": "EnumDefinition",
+            "src": "211:142:5"
+          },
+          {
+            "constant": false,
+            "functionSelector": "1fc6f61e",
+            "id": 839,
+            "name": "tournamentState",
+            "nodeType": "VariableDeclaration",
+            "overrides": null,
+            "scope": 853,
+            "src": "359:39:5",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_enum$_TOURNAMENT_STATE_$837",
+              "typeString": "enum KBRTournament.TOURNAMENT_STATE"
+            },
+            "typeName": {
+              "contractScope": null,
+              "id": 838,
+              "name": "TOURNAMENT_STATE",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 837,
+              "src": "359:16:5",
+              "typeDescriptions": {
+                "typeIdentifier": "t_enum$_TOURNAMENT_STATE_$837",
+                "typeString": "enum KBRTournament.TOURNAMENT_STATE"
+              }
+            },
+            "value": null,
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "id": 843,
+            "name": "TournamentResults",
+            "nodeType": "VariableDeclaration",
+            "overrides": null,
+            "scope": 853,
+            "src": "411:54:5",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_TournamentResult_$852_storage_$",
+              "typeString": "mapping(uint256 => struct KBRTournament.TournamentResult)"
+            },
+            "typeName": {
+              "id": 842,
+              "keyType": {
+                "id": 840,
+                "name": "uint256",
+                "nodeType": "ElementaryTypeName",
+                "src": "419:7:5",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                }
+              },
+              "nodeType": "Mapping",
+              "src": "411:36:5",
+              "typeDescriptions": {
+                "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_TournamentResult_$852_storage_$",
+                "typeString": "mapping(uint256 => struct KBRTournament.TournamentResult)"
+              },
+              "valueType": {
+                "contractScope": null,
+                "id": 841,
+                "name": "TournamentResult",
+                "nodeType": "UserDefinedTypeName",
+                "referencedDeclaration": 852,
+                "src": "430:16:5",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_struct$_TournamentResult_$852_storage_ptr",
+                  "typeString": "struct KBRTournament.TournamentResult"
+                }
+              }
+            },
+            "value": null,
+            "visibility": "internal"
+          },
+          {
+            "constant": false,
+            "id": 845,
+            "name": "tournamentId",
+            "nodeType": "VariableDeclaration",
+            "overrides": null,
+            "scope": 853,
+            "src": "472:20:5",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_uint256",
+              "typeString": "uint256"
+            },
+            "typeName": {
+              "id": 844,
+              "name": "uint256",
+              "nodeType": "ElementaryTypeName",
+              "src": "472:7:5",
+              "typeDescriptions": {
+                "typeIdentifier": "t_uint256",
+                "typeString": "uint256"
+              }
+            },
+            "value": null,
+            "visibility": "internal"
+          },
+          {
+            "canonicalName": "KBRTournament.TournamentResult",
+            "id": 852,
+            "members": [
+              {
+                "constant": false,
+                "id": 847,
+                "name": "winner",
+                "nodeType": "VariableDeclaration",
+                "overrides": null,
+                "scope": 852,
+                "src": "537:14:5",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                },
+                "typeName": {
+                  "id": 846,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "537:7:5",
+                  "stateMutability": "nonpayable",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 849,
+                "name": "nftID",
+                "nodeType": "VariableDeclaration",
+                "overrides": null,
+                "scope": 852,
+                "src": "562:10:5",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 848,
+                  "name": "uint",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "562:4:5",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 851,
+                "name": "timeEnded",
+                "nodeType": "VariableDeclaration",
+                "overrides": null,
+                "scope": 852,
+                "src": "583:14:5",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 850,
+                  "name": "uint",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "583:4:5",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              }
+            ],
+            "name": "TournamentResult",
+            "nodeType": "StructDefinition",
+            "scope": 853,
+            "src": "501:104:5",
+            "visibility": "public"
+          }
+        ],
+        "scope": 854,
+        "src": "134:474:5"
+      }
+    ],
+    "src": "0:608:5"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.6.2+commit.bacdbe57.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.3.2",
+  "updatedAt": "2021-01-16T06:41:27.042Z",
+  "devdoc": {
+    "methods": {}
+  },
+  "userdoc": {
+    "methods": {}
+  }
+}
