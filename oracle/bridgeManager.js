@@ -1,15 +1,13 @@
-const fs              = require('fs');
 const { BridgeSDK, TOKEN, EXCHANGE_MODE, STATUS } = require('bridge-sdk');
-const configs = require('bridge-sdk/lib/configs');
-const secrets = JSON.parse( fs.readFileSync('.secrets.json').toString().trim() );
+const fs        = require('fs');
+const configs   = require('bridge-sdk/lib/configs');
+const secrets   = JSON.parse( fs.readFileSync('.secrets.json').toString().trim() );
 
 const ethereumKey = secrets.eth_oracleKeys[0];
 
 const operationCall = async () => {
     const bridgeSDK = new BridgeSDK({ logLevel: 2 }); // 2 - full logs, 1 - only success & errors, 0 - logs off
-
     await bridgeSDK.init(configs.testnet);
-
     await bridgeSDK.addEthWallet(ethereumKey);
 
     let operationId;
