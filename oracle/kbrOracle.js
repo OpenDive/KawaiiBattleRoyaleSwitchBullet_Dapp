@@ -22,7 +22,7 @@ async function main() {
   const loader = setupLoader({ 
     provider: web3,
     defaultGas:  1e6, 
-    defaultGasPrice: 1e9 
+    defaultGasPrice: 1e6
   }).web3;
   // const loader = setupLoader({ provider: web3 }).truffle;
 
