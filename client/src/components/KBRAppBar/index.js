@@ -13,6 +13,18 @@ import NotificationsIcon from '@material-ui/icons/Notifications'
 import Badge from '@material-ui/core/Badge'
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
+import { Button, Typography } from '@material-ui/core';
+
+import {
+  CONNECTION_CONNECTED,
+  CONNECTION_DISCONNECTED
+} from '../../constants'
+import { toBech32 } from '@harmony-js/crypto'
+
+import { useState, useEffect } from "react"
+import Store from "../../stores";
+const store = Store.store
+const emitter = Store.emitter
 
 const drawerWidth = 240
 
@@ -51,7 +63,8 @@ const styles = theme => ({
     display: 'none'
   },
   title: {
-    flexGrow: 1
+    // flexGrow: 1
+    align: "left"
   },
   grow: {
     flexGrow: 1,
@@ -104,8 +117,44 @@ const styles = theme => ({
 })
 
 class KBRAppBar extends Component {
+
+  connectionChanged () {
+    console.log("CONNECTION CHANGED!!")
+    this.setState({
+      account: store.getStore('account')
+    });
+  }
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      account: 0
+    };
+
+    this.connectionChanged = this.connectionChanged.bind(this);
+  }
+
+  componentDidMount() {
+    emitter.on(CONNECTION_CONNECTED, this.connectionChanged)
+    emitter.on(CONNECTION_DISCONNECTED, this.connectionChanged)
+  }
+
+  componentWillUnmount() {
+    emitter.removeListener(CONNECTION_CONNECTED, this.connectionChanged)
+    emitter.removeListener(CONNECTION_DISCONNECTED, this.connectionChanged)
+  }
+  
   render(){
     const { classes } = this.props
+  
+    var address = null;
+    if (this.state.account.address) {
+      address = toBech32(this.state.account.address)
+      address = `${address.substring(0,6)}...${address.substring(address.length-4,address.length)}`
+      console.log("ADDRESS: " + address);
+    }
+
     
     return(
       <AppBar
@@ -128,17 +177,18 @@ class KBRAppBar extends Component {
           >
             <MenuIcon />
           </IconButton>
-          {/* <Typography
+          <Typography
             component="h1"
             variant="h6"
             color="inherit"
             noWrap
             className={ classes.title }
           >
-            { this.props.appBarTitle }
-          </Typography> */}
+            {/* { this.props.appBarTitle } */}
+            Kawaii Battle Royale: Switch Blade
+          </Typography>
 
-          <div className={classes.search}>
+          {/* <div className={classes.search}>
             <div className={classes.searchIcon}>
               <SearchIcon />
             </div>
@@ -149,11 +199,14 @@ class KBRAppBar extends Component {
                 input: classes.inputInput,
               }}
             />
-          </div>
+          </div> */}
 
           <div className={classes.grow} />
 
           <div className={classes.sectionDesktop}>
+            <Button
+              variant="contained" 
+              color="secondary">ONE Wallet</Button>
             <IconButton color="inherit">
               <Badge badgeContent={4} color="secondary">
                 <MailIcon />
