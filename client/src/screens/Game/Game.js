@@ -8,7 +8,7 @@ const unityContext = new UnityContext({
   codeUrl: "unity/myunityapp.wasm",
 });
  
-const App = () => {
+const Game = () => {
 
   unityContext.on("ConnectToOneWallet", (objectName, callback) => {
     window.ethereum.request({method: "eth_requestAccounts"})
@@ -29,16 +29,16 @@ const App = () => {
     let value = "100000";
     let name = "USD Coin";
 
-    usdContract.methods.approve(config.usdContract.address, "100000")
-      .send({from: setSelectedAddress})
-      .on('error', function(error) {
-        console.log('ERROR: ');
-        console.log(error);
-      })
-      .on('receipt', function(receipt) {
-        console.log('RECEIPT: ');
-        console.log(receipt);
-    })
+    // usdContract.methods.approve(config.usdContract.address, "100000")
+    //   .send({from: setSelectedAddress})
+    //   .on('error', function(error) {
+    //     console.log('ERROR: ');
+    //     console.log(error);
+    //   })
+    //   .on('receipt', function(receipt) {
+    //     console.log('RECEIPT: ');
+    //     console.log(receipt);
+    // })
   }
 
   return (
@@ -46,3 +46,5 @@ const App = () => {
         <Unity unityContext={unityContext} />
     </div>);
 };
+
+export default Game;

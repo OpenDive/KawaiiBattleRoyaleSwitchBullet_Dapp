@@ -15,6 +15,11 @@ import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import { Button, Typography } from '@material-ui/core';
 
+import Avatar from '@material-ui/core/Avatar';
+import Chip from '@material-ui/core/Chip';
+import FaceIcon from '@material-ui/icons/Face';
+import DoneIcon from '@material-ui/icons/Done';
+
 import {
   CONNECTION_CONNECTED,
   CONNECTION_DISCONNECTED
@@ -69,6 +74,9 @@ const styles = theme => ({
   grow: {
     flexGrow: 1,
   },
+  chip: {
+    margin: '8px 0 0 0'
+  },
   search: {
     position: 'relative',
     borderRadius: theme.shape.borderRadius,
@@ -117,6 +125,16 @@ const styles = theme => ({
 })
 
 class KBRAppBar extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      account: store.getStore('account')
+    };
+
+    this.connectionChanged = this.connectionChanged.bind(this);
+    this.getAccountrAddress = this.getAccountrAddress(this);
+  }
 
   connectionChanged () {
     console.log("CONNECTION CHANGED!!")
@@ -125,14 +143,14 @@ class KBRAppBar extends Component {
     });
   }
 
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      account: 0
-    };
-
-    this.connectionChanged = this.connectionChanged.bind(this);
+  getAccountrAddress() {
+    var address = null;
+    if (this.state.account.address) {
+      address = toBech32(this.state.account.address)
+      address = `${address.substring(0,6)}...${address.substring(address.length-4,address.length)}`
+      console.log("ADDRESS: " + address);
+      return address;
+    }
   }
 
   componentDidMount() {
@@ -146,17 +164,18 @@ class KBRAppBar extends Component {
   }
   
   render(){
+
     const { classes } = this.props
-  
+    
     var address = null;
     if (this.state.account.address) {
       address = toBech32(this.state.account.address)
-      address = `${address.substring(0,6)}...${address.substring(address.length-4,address.length)}`
+      address = `${address.substring(0,10)}...${address.substring(address.length-4,address.length)}`
       console.log("ADDRESS: " + address);
+      // return address;
     }
 
-    
-    return(
+    return (
       <AppBar
         position="absolute"
         className={ 
@@ -203,10 +222,24 @@ class KBRAppBar extends Component {
 
           <div className={classes.grow} />
 
-          <div className={classes.sectionDesktop}>
-            <Button
+          <div className={classes.sectionDesktop}>            
+            <Chip
+              className={ classes.chip}
+              icon={<FaceIcon />}
+              label={address}
+            />
+            {/* <Typography
+              component="h1"
+              variant="h6"
+              color="inherit"
+              noWrap>
+                {address}
+            </Typography> */}
+          
+            {/* <Button
               variant="contained" 
-              color="secondary">ONE Wallet</Button>
+              color="secondary">ONE Wallet
+            </Button> */}
             <IconButton color="inherit">
               <Badge badgeContent={4} color="secondary">
                 <MailIcon />
@@ -227,11 +260,11 @@ class KBRAppBar extends Component {
             </IconButton>
           </div>
 
-          <IconButton color="inherit">
+          {/* <IconButton color="inherit">
             <Badge badgeContent={4} color="secondary">
               <NotificationsIcon />
             </Badge>
-          </IconButton>
+          </IconButton> */}
         </Toolbar>
       </AppBar>
     )

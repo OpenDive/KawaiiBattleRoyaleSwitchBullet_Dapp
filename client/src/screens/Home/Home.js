@@ -25,6 +25,23 @@ import { makeStyles } from '@material-ui/core/styles';
 import Account from '../../components/account';
 
 
+
+import {
+  CONNECTION_CONNECTED,
+  CONNECTION_DISCONNECTED,
+  CONFIGURE,
+  CONFIGURE_RETURNED,
+  GET_BALANCES_PERPETUAL,
+  GET_BALANCES_PERPETUAL_RETURNED
+} from '../../constants'
+
+
+import Store from "../../stores";
+const emitter = Store.emitter
+const dispatcher = Store.dispatcher
+const store = Store.store
+
+
 const styles = theme => ({
   appBarSpacer: theme.mixins.toolbar,
   content: {
@@ -83,12 +100,52 @@ class Home extends Component {
 
   constructor(props) {
     super(props)
-    this.state = { 
-      ros: undefined,
-      viewer: undefined
-     }
+    // this.state = { 
+    //   ros: undefined,
+    //   viewer: undefined
+    //  }
+    this.state = {
+      account: undefined
+    }
     this.handleClose = this.handleClose.bind(this)
     this.showSnackBar = this.showSnackBar.bind(this)
+
+    this.getBalancesReturned = this.getBalancesReturned.bind(this);
+    this.configureReturned = this.configureReturned.bind(this);
+    this.connectionConnected = this.connectionConnected.bind(this);
+    this.connectionDisconnected = this.connectionDisconnected.bind(this);
+    this.switchRoute = this.switchRoute.bind(this);
+  }
+
+  switchRoute() {
+    this.props.history.push('/Game')
+  }
+
+
+  getBalancesReturned() {
+      window.setTimeout(() => {
+        dispatcher.dispatch({ type: GET_BALANCES_PERPETUAL, content: {} })
+      }, 5000)
+  }
+  
+  configureReturned() {
+      //dispatcher.dispatch({ type: GET_BALANCES_PERPETUAL, content: {} })
+  }
+  
+  connectionConnected() {
+      this.setState({
+        account: store.getStore('account')
+      })
+      dispatcher.dispatch({ type: CONFIGURE, content: {} })
+      dispatcher.dispatch({ type: GET_BALANCES_PERPETUAL, content: {} })
+
+      this.switchRoute();
+  };
+  
+  connectionDisconnected() {
+    this.setState({
+      account: store.getStore('account')
+    })
   }
 
   handleClose() {
@@ -113,10 +170,19 @@ class Home extends Component {
   // }
 
   componentWillUnmount() {
-    this.ros.close()
+    // this.ros.close()
+    emitter.removeListener(CONNECTION_CONNECTED, this.connectionConnected);
+    emitter.removeListener(CONNECTION_DISCONNECTED, this.connectionDisconnected);
+    emitter.removeListener(CONFIGURE_RETURNED, this.configureReturned);
+    emitter.removeListener(GET_BALANCES_PERPETUAL_RETURNED, this.getBalancesReturned);
   }
 
   componentDidMount() {
+    emitter.on(CONNECTION_CONNECTED, this.connectionConnected)
+    emitter.on(CONNECTION_DISCONNECTED, this.connectionDisconnected)
+    emitter.on(CONFIGURE_RETURNED, this.configureReturned)
+    emitter.on(GET_BALANCES_PERPETUAL_RETURNED, this.getBalancesReturned)
+
     // this.ros = new ROSLIB.Ros({
     //   url: 'ws://localhost:9090'
     // })
@@ -200,6 +266,7 @@ class Home extends Component {
           <Grid item xs={12} sm={4}>
             <Paper className={classes.paper}>
                 {/* Robot State View */}
+                {"Stake to Play"}
                 <Account />
             </Paper>
           </Grid>
