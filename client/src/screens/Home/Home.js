@@ -18,12 +18,23 @@ import Snackbar from '@material-ui/core/Snackbar';
 import Fade from '@material-ui/core/Fade';
 import Slide from '@material-ui/core/Slide';
 import Grow from '@material-ui/core/Grow';
+import Card from '@material-ui/core/Card';
+import CardActionArea from '@material-ui/core/CardActionArea';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import CardMedia from '@material-ui/core/CardMedia';
 import { makeStyles } from '@material-ui/core/styles';
 // import AnimatedVideoCanvas from '../../components/AnimatedVideoCanvas';
 // import OperationMode from '../../components/OperationMode'
 // import RobotQuickView from '../../components/RobotQuickView'
 import Account from '../../components/account';
+import harmonyLogo from '../../assets/harmony.png';
 
+import VideoBg from "reactjs-videobg";
+import ogg from "../../videos/Neon.ogg";
+import webm from "../../videos/Neon.webm";
+import mp4 from "../../videos/Neon.mp4";
+import demo1 from "../../videos/KBRDemo.mp4";
 
 
 import {
@@ -233,6 +244,11 @@ class Home extends Component {
 
     return(
       <main className={ classes.content }>
+        <VideoBg>
+          <VideoBg.Source src={ogg} type="video/ogg" />
+          <VideoBg.Source src={webm} type="video/webm" />
+          <VideoBg.Source src={demo1} type="video/mp4" />
+        </VideoBg>
         <div className={ classes.appBarSpacer } />
         <Grid 
           container 
@@ -264,11 +280,49 @@ class Home extends Component {
           {/* </Paper> */}
           </Grid>
           <Grid item xs={12} sm={4}>
-            <Paper className={classes.paper}>
+            {/* <Paper> */}
                 {/* Robot State View */}
-                {"Stake to Play"}
-                <Account />
-            </Paper>
+                {/* <CardMedia
+                  className={classes.media}
+                  image={harmonyLogo}
+                  title="Contemplative Reptile"
+                /> */}
+                {/* <img alt='Harmony logo' src={harmonyLogo} />
+                 */}
+                {/* <Account /> */}
+
+                
+            {/* </Paper> */}
+            <Card className={classes.root}>
+              <CardActionArea>
+                {/* <CardMedia
+                  component="img"
+                  alt="Contemplative Reptile"
+                  height="20"
+                  image={harmonyLogo}
+                  title="Contemplative Reptile"
+                /> */}
+                <img alt='Harmony logo' src={harmonyLogo} />
+                <CardContent>
+                  <Typography gutterBottom variant="h5" component="h2">
+                    Powered by Harmony
+                  </Typography>
+                  {/* <Typography variant="body2" color="textSecondary" component="p">
+                    Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
+                    across all continents except Antarctica
+                  </Typography> */}
+                  <Account /> 
+                </CardContent>
+              </CardActionArea>
+              {/* <CardActions>
+                <Button size="small" color="primary">
+                  Share
+                </Button>
+                <Button size="small" color="primary">
+                  Learn More
+                </Button>
+              </CardActions> */}
+            </Card>
           </Grid>
           <Grid item xs={12} sm={4}>
             {/* <Paper className={classes.paper}>
