@@ -8,6 +8,10 @@ import {
   GET_BALANCES_RETURNED,
   GET_BALANCES_PERPETUAL,
   GET_BALANCES_PERPETUAL_RETURNED,
+  APPROVE_STAKE_TO_PLAY_BUSD,
+  TRANSFER_STAKE_TO_PLAY_BUSD,
+  APPROVE_STAKE_TO_TOURNAMENT_BUSD,
+  TRANSFER_STAKE_TO_TOURNAMENTPLAY_BUSD,
   WalletConnectionError
 } from '../constants'
 
@@ -16,11 +20,11 @@ import { OneWalletConnector } from '@harmony-react/onewallet-connector'
 
 import { Hmy } from '@harmony-utils/wrappers'
 
-const Dispatcher = require('flux').Dispatcher
-const Emitter = require('events').EventEmitter
+const Dispatcher  = require('flux').Dispatcher
+const Emitter     = require('events').EventEmitter
 
-const dispatcher = new Dispatcher()
-const emitter = new Emitter()
+const dispatcher  = new Dispatcher()
+const emitter     = new Emitter()
 
 class Store {
   constructor() {
@@ -44,8 +48,8 @@ class Store {
       tokens: [
         {
           address: config.addresses.token,
-          name: 'TestToken',
-          symbol: 'TST',
+          name: 'KAWAII',
+          symbol: 'KAWAII',
           decimals: 18,
           balance: 0
         }
@@ -70,6 +74,18 @@ class Store {
           case GET_BALANCES_PERPETUAL:
             this.getBalancesPerpetual(payload)
             break
+          case APPROVE_STAKE_TO_PLAY_BUSD:
+            this.approveStakeToPlayBUSD(payload);
+            break;
+          case TRANSFER_STAKE_TO_PLAY_BUSD:
+            this.tranferStakeToPlayBUSD(payload);
+            break;
+          case APPROVE_STAKE_TO_TOURNAMENT_BUSD:
+            this.approveStateToTournamentBUSD(payload);
+            break;
+          case TRANSFER_STAKE_TO_TOURNAMENTPLAY_BUSD:
+            this.transferStakeToTournamentBUSD(payload);
+            break;
           default: {
           }
         }
@@ -173,19 +189,91 @@ class Store {
     }
   }
 
+  approveStakeToPlayBUSD = async (hmy, token, account, callback) => {
+    if(account && account.address) {
+      const hmy = store.getStore('hmy')
+      const account = store.getStore('account')
+      const context = store.getStore('web3context')
+      var connector = null
+  
+      if (context) {
+        connector = context.connector
+      }
+  
+      if (!connector) {
+        throw new WalletConnectionError('No wallet connected')
+      }
+
+      try {
+        // var balance = await erc20Contract.methods.balanceOf(account.address).call(hmy.gasOptions())
+        // balance = parseFloat(balance)/10**token.decimals
+        // callback(null, Math.ceil(balance))
+        const busdAddress = "one1cjrqgc79n4v6ntavnl0rthlemgmrapp980fllp"
+        const gameAddress = "";
+        const stake = 1000000;
+        let busdContract = hmy.client.contracts.createContract(require('../abi/ERC20.json'), busdAddress);
+        busdContract = await connector.attachToContract(busdContract)
+        return busdContract.methods.approve(gameAddress,stake).send({ ...hmy.gasOptions(), from: account.address })
+  
+      } catch(err) {
+        console.log(err)
+        return callback(err)
+      }
+
+    } else {
+      callback(null);
+    }
+  }
+
+  approveStateToTournamentBUSD = async (hmy, token, account, callback) => {
+    if(account && account.address) {
+      const hmy = store.getStore('hmy')
+      const account = store.getStore('account')
+      const context = store.getStore('web3context')
+      var connector = null
+  
+      if (context) {
+        connector = context.connector
+      }
+  
+      if (!connector) {
+        throw new WalletConnectionError('No wallet connected')
+      }
+
+      try {
+        // var balance = await erc20Contract.methods.balanceOf(account.address).call(hmy.gasOptions())
+        // balance = parseFloat(balance)/10**token.decimals
+        // callback(null, Math.ceil(balance))
+        const busdAddress = "one1cjrqgc79n4v6ntavnl0rthlemgmrapp980fllp"
+        const gameAddress = "";
+        const stake = 1000000;
+        let busdContract = hmy.client.contracts.createContract(require('../abi/ERC20.json'), busdAddress);
+        busdContract = await connector.attachToContract(busdContract)
+        return busdContract.methods.approve(gameAddress,stake).send({ ...hmy.gasOptions(), from: account.address })
+  
+      } catch(err) {
+        console.log(err)
+        return callback(err)
+      }
+
+    } else {
+      callback(null);
+    }
+  }
+
 //   useFaucet = async () => {
-//     const hmy = store.getStore('hmy')
-//     const account = store.getStore('account')
-//     const context = store.getStore('web3context')
-//     var connector = null
+    // const hmy = store.getStore('hmy')
+    // const account = store.getStore('account')
+    // const context = store.getStore('web3context')
+    // var connector = null
 
-//     if (context) {
-//       connector = context.connector
-//     }
+    // if (context) {
+    //   connector = context.connector
+    // }
 
-//     if (!connector) {
-//       throw new WalletConnectionError('No wallet connected')
-//     }
+    // if (!connector) {
+    //   throw new WalletConnectionError('No wallet connected')
+    // }
 
 //     let faucetContract = hmy.client.contracts.createContract(require('../abi/Faucet.json'), config.addresses.faucet)
 //     faucetContract = await connector.attachToContract(faucetContract)
