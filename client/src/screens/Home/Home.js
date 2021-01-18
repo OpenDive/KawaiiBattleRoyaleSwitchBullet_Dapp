@@ -245,8 +245,8 @@ class Home extends Component {
     return(
       <main className={ classes.content }>
         <VideoBg>
-          <VideoBg.Source src={ogg} type="video/ogg" />
-          <VideoBg.Source src={webm} type="video/webm" />
+          {/* <VideoBg.Source src={ogg} type="video/ogg" />
+          <VideoBg.Source src={webm} type="video/webm" /> */}
           <VideoBg.Source src={demo1} type="video/mp4" />
         </VideoBg>
         <div className={ classes.appBarSpacer } />
