@@ -11,7 +11,9 @@ import {
   APPROVE_STAKE_TO_PLAY_BUSD,
   TRANSFER_STAKE_TO_PLAY_BUSD,
   APPROVE_STAKE_TO_TOURNAMENT_BUSD,
+  APPROVE_STAKE_TO_TOURNAMENT_BUSD_RETURNED,
   TRANSFER_STAKE_TO_TOURNAMENTPLAY_BUSD,
+  TRANSFER_STAKE_TO_TOURNAMENTPLAY_BUSD_RETURNED,
   WalletConnectionError
 } from '../constants'
 
@@ -22,6 +24,7 @@ import { Hmy } from '@harmony-utils/wrappers'
 
 const Dispatcher  = require('flux').Dispatcher
 const Emitter     = require('events').EventEmitter
+const Web3        = require("web3");
 
 const dispatcher  = new Dispatcher()
 const emitter     = new Emitter()
@@ -189,10 +192,15 @@ class Store {
     }
   }
 
-  approveStakeToPlayBUSD = async (hmy, token, account, callback) => {
+  approveStakeToPlayBUSD = async (callback) => {
+    console.log("Callback: " + JSON.stringify(callback))
+    const tokens = store.getStore('tokens')
+    const account = store.getStore('account')
+    const hmy = store.getStore('hmy')
+
     if(account && account.address) {
-      const hmy = store.getStore('hmy')
-      const account = store.getStore('account')
+      // const hmy = store.getStore('hmy')
+      // const account = store.getStore('account')
       const context = store.getStore('web3context')
       var connector = null
   
@@ -208,8 +216,8 @@ class Store {
         // var balance = await erc20Contract.methods.balanceOf(account.address).call(hmy.gasOptions())
         // balance = parseFloat(balance)/10**token.decimals
         // callback(null, Math.ceil(balance))
-        const busdAddress = "one1cjrqgc79n4v6ntavnl0rthlemgmrapp980fllp"
-        const gameAddress = "";
+        const busdAddress = "0xc4860463C59D59a9aFAc9fdE35dff9Da363e8425"
+        const gameAddress = "0x97A2A0578004BF4A199f81f829FC73cF3bf9F550";
         const stake = 1000000;
         let busdContract = hmy.client.contracts.createContract(require('../abi/ERC20.json'), busdAddress);
         busdContract = await connector.attachToContract(busdContract)
@@ -225,11 +233,11 @@ class Store {
     }
   }
 
-  approveStakeToTournamentBUSD = async (hmy, token, account, callback) => {
+  approveStakeToTournamentBUSD = async (callback) => {
+    const hmy = store.getStore('hmy')
+    const account = store.getStore('account')
+    const context = store.getStore('web3context')
     if(account && account.address) {
-      const hmy = store.getStore('hmy')
-      const account = store.getStore('account')
-      const context = store.getStore('web3context')
       var connector = null
   
       if (context) {
@@ -244,13 +252,22 @@ class Store {
         // var balance = await erc20Contract.methods.balanceOf(account.address).call(hmy.gasOptions())
         // balance = parseFloat(balance)/10**token.decimals
         // callback(null, Math.ceil(balance))
-        const busdAddress = "one1cjrqgc79n4v6ntavnl0rthlemgmrapp980fllp"
-        const gameAddress = "";
-        const stake = 1000000;
+        const busdAddress = "0xc4860463C59D59a9aFAc9fdE35dff9Da363e8425"
+        const gameAddress = "0x97A2A0578004BF4A199f81f829FC73cF3bf9F550";
+        // const stake = 1000000; // .000000000001 BUSD
+        // .000000000001
+        //  1000000000000000000
+        // const stake = 3500000000000000000;
+
+        const stake = Web3.utils.toWei('35', 'ether'); // 35 BUSD
+
         let busdContract = hmy.client.contracts.createContract(require('../abi/ERC20.json'), busdAddress);
         busdContract = await connector.attachToContract(busdContract)
-        return busdContract.methods.approve(gameAddress,stake).send({ ...hmy.gasOptions(), from: account.address })
-  
+        return busdContract.methods.approve(gameAddress,stake)
+          .send({ ...hmy.gasOptions(), from: account.address })
+          .then(function(){
+            emitter.emit(APPROVE_STAKE_TO_TOURNAMENT_BUSD_RETURNED);
+          })
       } catch(err) {
         console.log(err)
         return callback(err)
@@ -261,42 +278,42 @@ class Store {
     }
   }
 
-  approveStakeToPlayBUSD = async (hmy, token, account, callback) => {
-    if(account && account.address) {
-      const hmy = store.getStore('hmy')
-      const account = store.getStore('account')
-      const context = store.getStore('web3context')
-      var connector = null
+  // approveStakeToPlayBUSD = async (hmy, token, account, callback) => {
+  //   if(account && account.address) {
+  //     const hmy = store.getStore('hmy')
+  //     const account = store.getStore('account')
+  //     const context = store.getStore('web3context')
+  //     var connector = null
   
-      if (context) {
-        connector = context.connector
-      }
+  //     if (context) {
+  //       connector = context.connector
+  //     }
   
-      if (!connector) {
-        throw new WalletConnectionError('No wallet connected')
-      }
+  //     if (!connector) {
+  //       throw new WalletConnectionError('No wallet connected')
+  //     }
 
-      try {
-        // var balance = await erc20Contract.methods.balanceOf(account.address).call(hmy.gasOptions())
-        // balance = parseFloat(balance)/10**token.decimals
-        // callback(null, Math.ceil(balance))
-        const busdAddress = "one1cjrqgc79n4v6ntavnl0rthlemgmrapp980fllp"
-        const gameAddress = "";
-        // const stake = 1000000;
-        const stake = 1000000000000000000;
-        let busdContract = hmy.client.contracts.createContract(require('../abi/ERC20.json'), busdAddress);
-        busdContract = await connector.attachToContract(busdContract)
-        return busdContract.methods.approve(gameAddress,stake).send({ ...hmy.gasOptions(), from: account.address })
+  //     try {
+  //       // var balance = await erc20Contract.methods.balanceOf(account.address).call(hmy.gasOptions())
+  //       // balance = parseFloat(balance)/10**token.decimals
+  //       // callback(null, Math.ceil(balance))
+  //       const busdAddress = "one1cjrqgc79n4v6ntavnl0rthlemgmrapp980fllp"
+  //       const gameAddress = "";
+  //       // const stake = 1000000;
+  //       const stake = 1000000000000000000;
+  //       let busdContract = hmy.client.contracts.createContract(require('../abi/ERC20.json'), busdAddress);
+  //       busdContract = await connector.attachToContract(busdContract)
+  //       return busdContract.methods.approve(gameAddress,stake).send({ ...hmy.gasOptions(), from: account.address })
   
-      } catch(err) {
-        console.log(err)
-        return callback(err)
-      }
+  //     } catch(err) {
+  //       console.log(err)
+  //       return callback(err)
+  //     }
 
-    } else {
-      callback(null);
-    }
-  }
+  //   } else {
+  //     callback(null);
+  //   }
+  // }
 
 //   useFaucet = async () => {
     // const hmy = store.getStore('hmy')

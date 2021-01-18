@@ -29,6 +29,7 @@ import {
   APPROVE_STAKE_TO_PLAY_BUSD,
   TRANSFER_STAKE_TO_PLAY_BUSD,
   APPROVE_STAKE_TO_TOURNAMENT_BUSD,
+  APPROVE_STAKE_TO_TOURNAMENT_BUSD_RETURNED,
   TRANSFER_STAKE_TO_TOURNAMENTPLAY_BUSD,
 } from '../../constants'
 
@@ -100,6 +101,13 @@ const Game = () => {
       // dispatcher.dispatch({ type: APPROVE_STAKE_TO_TOURNAMENT_BUSD, content: {} })
       // dispatcher.dispatch({ type: GET_BALANCES_PERPETUAL, content: {} })
     };
+
+    const approvedBUSDCallback = () => {
+      console.log("APPROVED BUSD CALLBACK");
+    }
+
+    emitter.on(APPROVE_STAKE_TO_TOURNAMENT_BUSD_RETURNED, approvedBUSDCallback)
+
   }, [])
 
   // unityContext.on("ConnectToOneWallet",(objectName, callback, stakeAmount) => {
@@ -111,8 +119,12 @@ const Game = () => {
   //   })
   // });
 
+  const ApproveBUSDCallback = () => {
+    console.log('APPROVE BUSD CALLBACK');
+  }
+
   unityContext.on("ApproveBUSD", (objectName, callback, stakeAmount) => {
-    dispatcher.dispatch({ type: APPROVE_STAKE_TO_TOURNAMENT_BUSD, content: {} })
+    dispatcher.dispatch({ type: APPROVE_STAKE_TO_TOURNAMENT_BUSD, content: ApproveBUSDCallback })
     // unityContext.send(objectName, "ApproveBUSDCallback", "NONE");
     // approveBUSD(objectName, callback, stakeAmount);
     

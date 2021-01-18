@@ -137,7 +137,7 @@ class KBRAppBar extends Component {
   }
 
   connectionChanged () {
-    console.log("CONNECTION CHANGED!!")
+    console.log("CONNECTION CHANGED!! " + store.getStore('account').address)
     this.setState({
       account: store.getStore('account')
     });
@@ -230,7 +230,7 @@ class KBRAppBar extends Component {
             />
             {/* <Typography
               component="h1"
-              variant="h6"
+              variant="h6" 
               color="inherit"
               noWrap>
                 {address}
