@@ -20,3 +20,11 @@ Kawaii Battle Royale (KBR): Switch Bullet is a NO-LOSS team-based multiplayer fi
 ## Bridge Flow
 <p align="center"></p>
 <img src="https://github.com/OpenDive/KawaiiBattleRoyaleSwitchBullet_Dapp/blob/main/client/public/kbr-harmony-bridge-liquidity-flow.jpg?raw=true" width="100%">
+
+## NFTS
+
+## Future Roadmap
+
+## About the Team
+Irvin (@kpatch) and Xiangxu (@cricel) are part of Gitcoin's 2021 KERNEL Fellowship program
+Tina Xu (@davinia1991) and Caitlyn (Cait-L) have recently joined the Cryptochick Incubator program
