@@ -27,6 +27,7 @@ Kawaii Battle Royale (KBR): Switch Bullet is a NO-LOSS team-based multiplayer fi
 <img src="https://github.com/OpenDive/KawaiiBattleRoyaleSwitchBullet_Dapp/blob/main/client/public/kbr2.gif?raw=true" width="100%">
 <img src="https://github.com/OpenDive/KawaiiBattleRoyaleSwitchBullet_Dapp/blob/main/client/public/selectionScene.gif?raw=true" width="100%">
 <img src="https://github.com/OpenDive/KawaiiBattleRoyaleSwitchBullet_Dapp/blob/main/client/public/battleScene.gif?raw=true" width="100%">
+<img src="https://github.com/OpenDive/KawaiiBattleRoyaleSwitchBullet_Dapp/blob/main/client/public/leaderboard.gif?raw=true" width="100%">
 
 # Cross-Chain Liquidity
 <p align="center"></p>
