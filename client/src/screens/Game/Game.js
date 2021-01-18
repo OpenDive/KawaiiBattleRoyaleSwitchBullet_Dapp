@@ -35,7 +35,8 @@ const useStyles = makeStyles((theme) => ({
   heroContent: {
     // backgroundColor: theme.palette.background.paper,
     // padding: theme.spacing(8, 0, 6),
-    padding: theme.spacing(20, 0, 6),
+    // padding: theme.spacing(20, 0, 6),
+    padding: theme.spacing(10, 0, 6),
   },
   heroButtons: {
     marginTop: theme.spacing(4),
@@ -62,10 +63,10 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const unityContext = new UnityContext({
-  loaderUrl: "unity/myunityapp.loader.js",
-  dataUrl: "unity/myunityapp.data",
-  frameworkUrl: "unity/myunityapp.framework.js",
-  codeUrl: "unity/myunityapp.wasm",
+  loaderUrl: "unity/unity.loader.js",
+  dataUrl: "unity/unity.data",
+  frameworkUrl: "unity/unity.framework.js",
+  codeUrl: "unity/unity.wasm",
 });
  
 const Game = () => {
@@ -103,22 +104,39 @@ const Game = () => {
   const classes = useStyles();
 
 
+  const [progression, setProgression] = React.useState()
+  const [videoOn, setVideoOn] = React.useState()
+  
+  useEffect(() => {
+
+    unityContext.on("progress", progression => {
+
+      // Now we can use the progression to for example
+      // display it on our React app.
+      setProgression(progression);
+      if(progression == 100) {
+        setVideoOn(false);
+      }
+    });
+
+  }, [unityContext, progression, videoOn])
+
   // <main> </main>
   return (
     // <div>
     //     <Unity unityContext={unityContext} />
     // </div>
         <div className={classes.heroContent}>
-          <VideoBg>
-            <VideoBg.Source src={demo1} type="video/mp4" />
-          </VideoBg>
-          <Container maxWidth="sm">
+          {/* <VideoBg loop={false}>
+          <VideoBg.Source src={ogg} type="video/ogg" />
+          <VideoBg.Source src={webm} type="video/webm" />
+          <VideoBg.Source src={mp4} type="video/mp4" />
+          </VideoBg> */}
+          {/* <Container maxWidth="sm">
             <Paper
             className={classes.paper} 
             elevation={6}>
               <Box p={1}>
-
-
               <Typography component="h1" variant="h3" align="center" color="textPrimary" gutterBottom>
               Stake to Play
             </Typography>
@@ -144,7 +162,8 @@ const Game = () => {
 
               </Box>
             </Paper>
-          </Container>
+          </Container> */}
+          <Unity unityContext={unityContext} height="900px" width="1024" />
         </div>
     );
 };

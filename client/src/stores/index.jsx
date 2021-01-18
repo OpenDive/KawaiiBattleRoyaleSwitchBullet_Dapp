@@ -225,7 +225,7 @@ class Store {
     }
   }
 
-  approveStateToTournamentBUSD = async (hmy, token, account, callback) => {
+    approveStakeToPlayBUSD = async (hmy, token, account, callback) => {
     if(account && account.address) {
       const hmy = store.getStore('hmy')
       const account = store.getStore('account')
