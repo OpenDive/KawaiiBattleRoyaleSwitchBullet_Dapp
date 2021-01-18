@@ -23,6 +23,19 @@ import webm from "../../videos/Neon.webm";
 import mp4 from "../../videos/Neon.mp4";
 import demo1 from "../../videos/KBRDemo.mp4";
 
+import {
+  CONNECTION_CONNECTED,
+  CONNECTION_DISCONNECTED,
+  APPROVE_STAKE_TO_PLAY_BUSD,
+  TRANSFER_STAKE_TO_PLAY_BUSD,
+  APPROVE_STAKE_TO_TOURNAMENT_BUSD,
+  TRANSFER_STAKE_TO_TOURNAMENTPLAY_BUSD,
+} from '../../constants'
+
+import Store from "../../stores";
+const emitter = Store.emitter
+const dispatcher = Store.dispatcher
+const store = Store.store
 
 
 const useStyles = makeStyles((theme) => ({
@@ -71,24 +84,50 @@ const unityContext = new UnityContext({
  
 const Game = () => {
 
-  unityContext.on("ConnectToOneWallet", (objectName, callback) => {
-    window.ethereum.request({method: "eth_requestAccounts"})
-      .then( function(accounts) {
-        window.accounts = accounts
-        console.log(accounts[0])
-        // unityInstance.SendMessage(parsedObjectName, parsedCallback, Pointer_stringify(accounts[0]));
-    })
-  });
+  useEffect(() => {
+    // const getBalancesReturned = () => {
+    //   window.setTimeout(() => {
+    //     dispatcher.dispatch({ type: GET_BALANCES_PERPETUAL, content: {} })
+    //   }, 5000)
+    // }
+  
+    const configureReturned = () => {
+      //dispatcher.dispatch({ type: GET_BALANCES_PERPETUAL, content: {} })
+    }
+  
+    const approveBUSD = () => {
+      // setAccount(store.getStore('account'))
+      // dispatcher.dispatch({ type: APPROVE_STAKE_TO_TOURNAMENT_BUSD, content: {} })
+      // dispatcher.dispatch({ type: GET_BALANCES_PERPETUAL, content: {} })
+    };
+  }, [])
+
+  // unityContext.on("ConnectToOneWallet",(objectName, callback, stakeAmount) => {
+  //   window.ethereum.request({method: "eth_requestAccounts"})
+  //     .then( function(accounts) {
+  //       window.accounts = accounts
+  //       console.log(accounts[0])
+  //       unityContext.SendMessage(parsedObjectName, parsedCallback, Pointer_stringify(accounts[0]));
+  //   })
+  // });
 
   unityContext.on("ApproveBUSD", (objectName, callback, stakeAmount) => {
-    approveBUSD(objectName, callback, stakeAmount);
+    dispatcher.dispatch({ type: APPROVE_STAKE_TO_TOURNAMENT_BUSD, content: {} })
+    // unityContext.send(objectName, "ApproveBUSDCallback", "NONE");
+    // approveBUSD(objectName, callback, stakeAmount);
+    
+  });
+
+  unityContext.on("StakeEntry", (objectName, callback, stakeAmount) => {
+    // dispatcher.dispatch({ type: APPROVE_STAKE_TO_TOURNAMENT_BUSD, content: {} })
+    unityContext.send(objectName, "StakeEntryCallback", "NONE");
   });
 
   
-  const approveBUSD = async (objectName, callback, stakeAmount) => {
+  // const approveBUSD = async (objectName, callback, stakeAmount) => {
 
-    let value = "100000";
-    let name = "USD Coin";
+  //   let value = "100000";
+  //   let name = "USD Coin";
 
     // usdContract.methods.approve(config.usdContract.address, "100000")
     //   .send({from: setSelectedAddress})
@@ -100,7 +139,7 @@ const Game = () => {
     //     console.log('RECEIPT: ');
     //     console.log(receipt);
     // })
-  }
+  // }
   const classes = useStyles();
 
 
@@ -127,11 +166,11 @@ const Game = () => {
     //     <Unity unityContext={unityContext} />
     // </div>
         <div className={classes.heroContent}>
-          {/* <VideoBg loop={false}>
+          <VideoBg loop={false}>
           <VideoBg.Source src={ogg} type="video/ogg" />
           <VideoBg.Source src={webm} type="video/webm" />
           <VideoBg.Source src={mp4} type="video/mp4" />
-          </VideoBg> */}
+          </VideoBg>
           {/* <Container maxWidth="sm">
             <Paper
             className={classes.paper} 

@@ -4,6 +4,7 @@ import logo from './logo.svg';
 import './App.css';
 import KBRAppBar from './components/KBRAppBar'
 import Home from './screens/Home'
+import Game from './screens/Game'
 import VideoBg from "reactjs-videobg";
 import ogg from "./videos/Neon.ogg";
 import webm from "./videos/Neon.webm";
@@ -110,11 +111,11 @@ function App() {
 
   return (
     <div className="App">
-      <VideoBg>
+      {/* <VideoBg>
         <VideoBg.Source src={ogg} type="video/ogg" />
         <VideoBg.Source src={webm} type="video/webm" />
         <VideoBg.Source src={mp4} type="video/mp4" />
-      </VideoBg>
+      </VideoBg> */}
       {/* <video
         autoPlay
         loop
@@ -161,8 +162,8 @@ function App() {
           <Switch>
             <Route exact path="/" component={ Home }/>
             <Route exact path="/home" component={ Home }/>
-            {/* <Route exact path="/interfaces" component={ Interfaces} />
-            <Route exact path="/system-state" component={ SystemState} /> */}
+            <Route exact path="/game" component={ Game} />
+            {/* <Route exact path="/system-state" component={ SystemState} /> */}
           </Switch>
           {/* <Account /> */}
         </div>

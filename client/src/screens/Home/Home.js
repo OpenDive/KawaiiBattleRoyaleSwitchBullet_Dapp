@@ -130,7 +130,7 @@ class Home extends Component {
   }
 
   switchRoute() {
-    this.props.history.push('/Game')
+    this.props.history.push('/game')
   }
 
 
