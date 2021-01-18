@@ -127,11 +127,11 @@ const Game = () => {
     //     <Unity unityContext={unityContext} />
     // </div>
         <div className={classes.heroContent}>
-          {/* <VideoBg loop={false}>
+          <VideoBg loop={false}>
           <VideoBg.Source src={ogg} type="video/ogg" />
           <VideoBg.Source src={webm} type="video/webm" />
           <VideoBg.Source src={mp4} type="video/mp4" />
-          </VideoBg> */}
+          </VideoBg>
           {/* <Container maxWidth="sm">
             <Paper
             className={classes.paper} 
