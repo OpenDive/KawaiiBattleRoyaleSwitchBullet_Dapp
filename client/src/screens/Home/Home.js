@@ -71,7 +71,8 @@ const styles = theme => ({
     right: theme.spacing.unit * 2,
   },
   paper: {
-    padding: theme.spacing(2),
+    // padding: theme.spacing(2),
+    padding: theme.spacing(8),
     textAlign: 'center',
     color: theme.palette.text.secondary,
   },
@@ -293,7 +294,7 @@ class Home extends Component {
 
                 
             {/* </Paper> */}
-            <Card className={classes.root}>
+            <Card className={classes.paper}>
               <CardActionArea>
                 {/* <CardMedia
                   component="img"
@@ -302,6 +303,9 @@ class Home extends Component {
                   image={harmonyLogo}
                   title="Contemplative Reptile"
                 /> */}
+                <Typography gutterBottom variant="h4" component="h2">
+                    Kawaii Battle Royale
+                </Typography>
                 <img alt='Harmony logo' src={harmonyLogo} />
                 <CardContent>
                   <Typography gutterBottom variant="h5" component="h2">

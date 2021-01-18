@@ -86,14 +86,15 @@ const useStyles = makeStyles(theme => ({
 export default function Account() {
   const classes = useStyles()
   const [modalOpen, setModalOpen] = useState(false)
+      // <div className={ classes.notConnectedRoot }>
 
   const renderNotConnected = () => {
     return (
-      <div className={ classes.notConnectedRoot }>
-        <div className={ classes.connectHeading }>
+      <div>
+        {/* <div className={ classes.connectHeading }>
           <Typography variant='h2'>Token faucet demo dApp on Harmony</Typography>
           <img alt='Harmony logo' src={harmonyLogo} />
-        </div>
+        </div> */}
         <Button
           className={ classes.actionButton }
           color="primary"
@@ -121,7 +122,8 @@ export default function Account() {
   }
 
   return (
-    <div className={ classes.root }>
+    // <div className={ classes.root }>
+    <div>
       { renderNotConnected() }
     </div>
   )
