@@ -20,26 +20,26 @@ Kawaii Battle Royale (KBR): Switch Bullet is a NO-LOSS team-based multiplayer fi
   <img src="https://github.com/OpenDive/KawaiiBattleRoyaleSwitchBullet_Dapp/blob/main/client/public/kbr.png?raw=true" width="200" height="200">
 </h1>
 
-## DeFi No-Loss Games
-### Stake-to-Play
-## Built for Harmony
+# DeFi No-Loss Games
+## Stake-to-Play
+# Built for Harmony
 <p align="center"></p>
 <img src="https://github.com/OpenDive/KawaiiBattleRoyaleSwitchBullet_Dapp/blob/main/client/public/kbr2.gif?raw=true" width="100%">
 <img src="https://github.com/OpenDive/KawaiiBattleRoyaleSwitchBullet_Dapp/blob/main/client/public/selectionScene.gif?raw=true" width="100%">
 <img src="https://github.com/OpenDive/KawaiiBattleRoyaleSwitchBullet_Dapp/blob/main/client/public/battleScene.gif?raw=true" width="100%">
 
-## Cross-Chain Liquidity
+# Cross-Chain Liquidity
 <p align="center"></p>
 <img src="https://github.com/OpenDive/KawaiiBattleRoyaleSwitchBullet_Dapp/blob/main/client/public/kbr-harmony-bridge-liquidity-flow.jpg?raw=true" width="100%">
 
-## KBR Gameplay
+# KBR Gameplay
 
-### NFTS
+## NFTS
 
-### Marketplace
+## Marketplace
 
-## Future Roadmap
+# Future Roadmap
 
-## About the Team
+# About the Team
 Irvin ([@kpatch](https://github.com/kPatch)) and Xiangxu ([@cricel](https://github.com/cricel)) are part of Gitcoin's 2021 KERNEL Fellowship program.   
 Tina Xu ([@davinia1991](https://github.com/davinia1991)) and Caitlyn ([@Cait-L](https://github.com/Cait-L)) have recently joined the Cryptochick Incubator program
