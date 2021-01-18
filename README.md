@@ -8,6 +8,7 @@ Kawaii Battle Royale (KBR): Switch Bullet is a NO-LOSS team-based multiplayer fi
 
 ## Built for Harmony
 <p align="center"></p>
+<img src="https://github.com/OpenDive/KawaiiBattleRoyaleSwitchBullet_Dapp/blob/main/client/public/kbr2.gif?raw=true" width="100%">
 <img src="https://github.com/OpenDive/KawaiiBattleRoyaleSwitchBullet_Dapp/blob/main/client/public/battleScene.gif?raw=true" width="100%">
 
 ## Bridge Flow
