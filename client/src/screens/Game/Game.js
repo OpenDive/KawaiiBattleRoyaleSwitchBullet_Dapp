@@ -31,6 +31,7 @@ import {
   APPROVE_STAKE_TO_TOURNAMENT_BUSD,
   APPROVE_STAKE_TO_TOURNAMENT_BUSD_RETURNED,
   TRANSFER_STAKE_TO_TOURNAMENTPLAY_BUSD,
+  TRANSFER_STAKE_TO_TOURNAMENTPLAY_BUSD_RETURNED,
 } from '../../constants'
 
 import Store from "../../stores";
@@ -104,10 +105,17 @@ const Game = () => {
 
     const approvedBUSDCallback = () => {
       console.log("APPROVED BUSD CALLBACK");
+      unityContext.send("Controller", "ApproveBUSDCallback", "NONE");
     }
-
     emitter.on(APPROVE_STAKE_TO_TOURNAMENT_BUSD_RETURNED, approvedBUSDCallback)
 
+
+    const stakeEntryCallback = () => {
+      console.log("APPROVED BUSD CALLBACK");
+      unityContext.send("Controller", "StakeEntryCallback", "NONE");
+    }
+    emitter.on(TRANSFER_STAKE_TO_TOURNAMENTPLAY_BUSD_RETURNED, stakeEntryCallback)
+    
   }, [])
 
   // unityContext.on("ConnectToOneWallet",(objectName, callback, stakeAmount) => {
@@ -119,12 +127,13 @@ const Game = () => {
   //   })
   // });
 
-  const ApproveBUSDCallback = () => {
-    console.log('APPROVE BUSD CALLBACK');
-  }
+  // const ApproveBUSDCallback = () => {
+  //   console.log('APPROVE BUSD CALLBACK');
+  //   unityContext.send("Controller", "ApproveBUSDCallback", "NONE");
+  // }
 
   unityContext.on("ApproveBUSD", (objectName, callback, stakeAmount) => {
-    dispatcher.dispatch({ type: APPROVE_STAKE_TO_TOURNAMENT_BUSD, content: ApproveBUSDCallback })
+    dispatcher.dispatch({ type: APPROVE_STAKE_TO_TOURNAMENT_BUSD, content: {} })
     // unityContext.send(objectName, "ApproveBUSDCallback", "NONE");
     // approveBUSD(objectName, callback, stakeAmount);
     
@@ -132,7 +141,8 @@ const Game = () => {
 
   unityContext.on("StakeEntry", (objectName, callback, stakeAmount) => {
     // dispatcher.dispatch({ type: APPROVE_STAKE_TO_TOURNAMENT_BUSD, content: {} })
-    unityContext.send(objectName, "StakeEntryCallback", "NONE");
+    dispatcher.dispatch({ type: TRANSFER_STAKE_TO_TOURNAMENTPLAY_BUSD, content: {} })
+    // unityContext.send(objectName, "StakeEntryCallback", "NONE");
   });
 
   

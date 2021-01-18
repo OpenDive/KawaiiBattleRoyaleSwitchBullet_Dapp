@@ -277,6 +277,51 @@ class Store {
       callback(null);
     }
   }
+  
+  transferStakeToTournamentBUSD  = async (callback) => {
+    const hmy = store.getStore('hmy')
+    const account = store.getStore('account')
+    const context = store.getStore('web3context')
+    if(account && account.address) {
+      var connector = null
+  
+      if (context) {
+        connector = context.connector
+      }
+  
+      if (!connector) {
+        throw new WalletConnectionError('No wallet connected')
+      }
+
+      try {
+        // var balance = await erc20Contract.methods.balanceOf(account.address).call(hmy.gasOptions())
+        // balance = parseFloat(balance)/10**token.decimals
+        // callback(null, Math.ceil(balance))
+        const busdAddress = "0xc4860463C59D59a9aFAc9fdE35dff9Da363e8425"
+        const gameAddress = "0x97A2A0578004BF4A199f81f829FC73cF3bf9F550";
+        // const stake = 1000000; // .000000000001 BUSD
+        // .000000000001
+        //  1000000000000000000
+        // const stake = 3500000000000000000;
+
+        const stake = Web3.utils.toWei('35', 'ether'); // 35 BUSD
+
+        let busdContract = hmy.client.contracts.createContract(require('../abi/ERC20.json'), busdAddress);
+        busdContract = await connector.attachToContract(busdContract)
+        return busdContract.methods.transferFrom(account.address, gameAddress, stake)
+          .send({ ...hmy.gasOptions(), from: account.address })
+          .then(function(){
+            emitter.emit(TRANSFER_STAKE_TO_TOURNAMENTPLAY_BUSD_RETURNED);
+          })
+      } catch(err) {
+        console.log(err)
+        return callback(err)
+      }
+
+    } else {
+      callback(null);
+    }
+  }
 
   // approveStakeToPlayBUSD = async (hmy, token, account, callback) => {
   //   if(account && account.address) {
