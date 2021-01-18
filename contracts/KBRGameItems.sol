@@ -15,14 +15,14 @@ contract KBRGameItems is ERC1155PresetMinterPauser {
     address public governance;
     
     // uint256 public itemId;
-    uint256 public constant KAWAII_CAPPED   = 0;   // 3 Billion Cap
-    uint256 public constant SUPER_BOOTS     = 1; // Makes creature run faster
-    uint256 public constant TIMEWARP_CAPE   = 2; // Slows down time
-    uint256 public constant JETPACK         = 3; // A nifty jetpack
-    uint256 public constant THORS_HAMMER    = 4;
-    uint256 public constant SWORD           = 5;
-    uint256 public constant SHIELD          = 6;
-    uint256 public constant LOVE_GUN        = 7;
+    // uint256 public constant KAWAII_CAPPED   = 0;   // 3 Billion Cap
+    // uint256 public constant SUPER_BOOTS     = 1; // Makes creature run faster
+    // uint256 public constant TIMEWARP_CAPE   = 2; // Slows down time
+    // uint256 public constant JETPACK         = 3; // A nifty jetpack
+    // uint256 public constant THORS_HAMMER    = 4;
+    // uint256 public constant SWORD           = 5;
+    // uint256 public constant SHIELD          = 6;
+    // uint256 public constant LOVE_GUN        = 7;
 
     constructor(address _governance) public ERC1155PresetMinterPauser("https://game.example/api/item/{id}.json") {
         governance = _governance;

@@ -6,7 +6,7 @@ contract KAWAIIToken is ERC20PresetMinterPauser {
     // constructor(uint256 initialSupply) public ERC20("Kawaii", "KAWAII") {
     //     _mint(msg.sender, initialSupply);
     // }
-    bytes32 public constant MINTER_ROLE = keccak256("MY_ROLE");
+    // bytes32 public constant MINTER_ROLE = keccak256("MY_ROLE");
 
     constructor(address _governance) public ERC20PresetMinterPauser("Kawaii", "KAWAII") {
         _setupRole(DEFAULT_ADMIN_ROLE, msg.sender);
