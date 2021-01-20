@@ -65,7 +65,11 @@ https://drive.google.com/drive/u/0/folders/15jI5D1y54QY_2ukZpqiXMcN9OYQ6KtKy
 <img src="https://github.com/OpenDive/KawaiiBattleRoyaleSwitchBullet_Dapp/blob/main/client/public/leaderboard.gif?raw=true" width="100%">
 
 ## NFTS
-
+<h1 align="center">
+  <br>
+  <img src="https://github.com/OpenDive/KawaiiBattleRoyaleSwitchBullet_Dapp/blob/main/client/public/characters.jpg?raw=true" width="998" height="200">
+</h1   
+    
 ## Marketplace
 
 # Future Roadmap
