@@ -96,7 +96,7 @@ Irvin ([@kpatch](https://github.com/kPatch)) and Xiangxu ([@cricel](https://gith
 
 <h1 align="center">
   <br>
-  <img src="https://github.com/OpenDive/KawaiiBattleRoyaleSwitchBullet_Dapp/blob/main/client/public/involvement.png?raw=true" width="998" height="557">
+  <img src="https://github.com/OpenDive/KawaiiBattleRoyaleSwitchBullet_Dapp/blob/main/client/public/involvement.png?raw=true" width="420" height="240">
 </h1>
 
 
