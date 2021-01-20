@@ -65,6 +65,7 @@ https://drive.google.com/drive/u/0/folders/15jI5D1y54QY_2ukZpqiXMcN9OYQ6KtKy
 <img src="https://github.com/OpenDive/KawaiiBattleRoyaleSwitchBullet_Dapp/blob/main/client/public/leaderboard.gif?raw=true" width="100%">
 
 ## NFTS
+Four unique character races are released in this initial version: (1) Elves, Humans, Kitsune and Nekomimi. Each is able to weare unique outfits and skins that are represented as NFTs
 <h1 align="center">
   <br>
   <img src="https://github.com/OpenDive/KawaiiBattleRoyaleSwitchBullet_Dapp/blob/main/client/public/characters.jpg?raw=true" width="998" height="200">
