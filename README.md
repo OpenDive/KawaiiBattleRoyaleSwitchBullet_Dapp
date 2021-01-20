@@ -73,8 +73,30 @@ Four unique character races are released in this initial version: (1) Elves, Hum
   <img src="https://github.com/OpenDive/KawaiiBattleRoyaleSwitchBullet_Dapp/blob/main/client/public/weapons.jpg?raw=true" width="998" height="200">
 </h1   
 
+Other assets will be later tokenized and affect the tournament gameplay.
+    
 # Future Roadmap
+
+## DeFi
+- Develop arbitrage and flashloan backend to maximize tournament reward
+- Integrate other money-market protocols running on Harmony and Ethereum
+
+## Game
+- Introduce new battlegrounds / worlds
+- Design new characters and personalities
+- Design new assets, skins, weapons to represent as NFTs
+- Improve game mechanic to allow for magic spells
+
+## Mainnet
+- Release and Demo Game at the end of Gitcoin's Fellowship or the CryptoChicks Incubator
 
 # About the Team   
 Tina ([@davinia1991](https://github.com/davinia1991)) and Caitlyn ([@Cait-L](https://github.com/Cait-L)) have recently joined the Cryptochick Incubator program.   
 Irvin ([@kpatch](https://github.com/kPatch)) and Xiangxu ([@cricel](https://github.com/cricel)) are part of Gitcoin's 2021 KERNEL Fellowship program.
+
+<h1 align="center">
+  <br>
+  <img src="https://github.com/OpenDive/KawaiiBattleRoyaleSwitchBullet_Dapp/blob/main/client/public/involvement.png?raw=true" width="998" height="557">
+</h1>
+
+
