@@ -32,6 +32,14 @@ The Game Oracle then monitors the state of the tournament / bracket, issues rand
 # Demo
 https://drive.google.com/drive/u/0/folders/15jI5D1y54QY_2ukZpqiXMcN9OYQ6KtKy
 
+## Contract Addresses
+
+| Contract | ONE  | 0x  |
+| :---:   | :-: | :-: |
+| Game | ```one1j732q4uqqjl55xvls8uznlrneualna2segkw99``` | ```0x97A2A0578004BF4A199f81f829FC73cF3bf9F550``` |
+| Marketplace | ```one19dqgeujxvv8ltpuyxtxyasy0s7pdtnu9ldq7s6``` | ```0x9C944FaB4A3Be972D99857d01F094Df1bA286766``` |
+| Game Items (ERC-1155) | ```one1h2duugl6kjtkcazwt0sjy764dj24sjtjqafpf6``` | ```0x9C944FaB4A3Be972D99857d01F094Df1bA286766``` |
+| KAWAII Token (ERC-20) | ```one1sd4pasqrlleaqhg8pw0twgm85xv30ltmeh0x8l``` | ```0x836A1Ec003fFf3D05d070b9eb72367A19917Fd7B``` |
 
 # Cross-Chain Liquidity
 <p align="center"></p>
