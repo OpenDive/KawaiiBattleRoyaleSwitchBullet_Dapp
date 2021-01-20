@@ -62,6 +62,6 @@ https://drive.google.com/drive/u/0/folders/15jI5D1y54QY_2ukZpqiXMcN9OYQ6KtKy
 
 # Future Roadmap
 
-# About the Team
-Irvin ([@kpatch](https://github.com/kPatch)) and Xiangxu ([@cricel](https://github.com/cricel)) are part of Gitcoin's 2021 KERNEL Fellowship program.   
-Tina Xu ([@davinia1991](https://github.com/davinia1991)) and Caitlyn ([@Cait-L](https://github.com/Cait-L)) have recently joined the Cryptochick Incubator program
+# About the Team   
+Tina ([@davinia1991](https://github.com/davinia1991)) and Caitlyn ([@Cait-L](https://github.com/Cait-L)) have recently joined the Cryptochick Incubator program.   
+Irvin ([@kpatch](https://github.com/kPatch)) and Xiangxu ([@cricel](https://github.com/cricel)) are part of Gitcoin's 2021 KERNEL Fellowship program.
