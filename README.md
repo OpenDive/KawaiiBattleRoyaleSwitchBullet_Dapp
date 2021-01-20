@@ -5,8 +5,6 @@
 
 # Contents
 - [About](#kawaii-battleroyale-switch-bullet)
-- [DeFi No-Loss Games](#defi-no-loss-games)
-  - [Stake-to-Play](#stake-to-play)
 - [Cross-Chain Liquidity](#cross-chain-liquidity)
 - [KBR Gameplay](#kbr-gameplay)
   - [NFTs](#nfts)
@@ -46,14 +44,13 @@ https://drive.google.com/drive/u/0/folders/15jI5D1y54QY_2ukZpqiXMcN9OYQ6KtKy
 <img src="https://github.com/OpenDive/KawaiiBattleRoyaleSwitchBullet_Dapp/blob/main/client/public/kbr-harmony-bridge-liquidity-flow.jpg?raw=true" width="100%">
 
 
-# DeFi No-Loss Games   
+# Overview
     
 <h1 align="center">
   <br>
   <img src="https://github.com/OpenDive/KawaiiBattleRoyaleSwitchBullet_Dapp/blob/main/client/public/kbr.png?raw=true" width="200" height="200">
 </h1>
 
-## Stake-to-Play
 # Built for Harmony
 <p align="center"></p>
 <img src="https://github.com/OpenDive/KawaiiBattleRoyaleSwitchBullet_Dapp/blob/main/client/public/kbr2.gif?raw=true" width="100%">
@@ -75,8 +72,6 @@ Four unique character races are released in this initial version: (1) Elves, Hum
   <br>
   <img src="https://github.com/OpenDive/KawaiiBattleRoyaleSwitchBullet_Dapp/blob/main/client/public/weapons.jpg?raw=true" width="998" height="200">
 </h1   
-    
-## Marketplace
 
 # Future Roadmap
 
