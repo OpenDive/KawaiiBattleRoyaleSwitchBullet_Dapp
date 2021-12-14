@@ -27,7 +27,7 @@
     "@harmony-js/core": "^0.1.56",
     "@harmony-js/utils": "^0.1.56",
     "@openzeppelin/contract-loader": "^0.6.2",
-    "@openzeppelin/contracts": "^3.3.0",
+    "@openzeppelin/contracts": "^4.4.1",
     "@openzeppelin/test-helpers": "^0.5.10",
     "@truffle/contract": "^4.3.5",
     "@truffle/hdwallet-provider": "^1.2.1",
